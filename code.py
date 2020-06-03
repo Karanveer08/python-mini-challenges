@@ -1,9 +1,17 @@
 # --------------
 #Code starts here
+#Smallest Palindrome
+def palindrome_check(num):
+  num=str(num)
+  return (num[::-1]==num)
+
+#Function to find the smallest palindrome
 def palindrome(num):
-    for i in range(num+1,2*num):
-        if str(i)==str(i)[::-1]:
-            return i
+    while(1):
+        num=num+1
+        if palindrome_check(num):
+            return num
+
 palindrome(123)
 palindrome(1331)
 
@@ -11,22 +19,23 @@ palindrome(1331)
 
 # --------------
 #Code starts here
-def a_scramble(str_1, str_2):
-    str_1 = list(str_1.lower())
-    str_2 = list(str_2.lower())
-    for i in range(0, len(str_2)):
-        if str_2[i] in str_1:
-            str_1.remove(str_2[i])
-            if i == len(str_2) - 1:
-                return True
-        else: 
-            return False
+#Anagram Scramble
+def a_scramble(str_1,str_2):
+    result=True
+    for i in (str_2.lower()):
+        if i not in (str_1.lower()):
+            result=False
+            break
+        str_1=str_1.replace(i,'',1) #Removing the letters from str_1 that are already checked
+    
+    return (result)
 a_scramble("Tom Marvolo Riddle","Voldemort")
 a_scramble("ticket","chat")
 
 
 # --------------
 #Code starts here
+#Fibonacci Check
 from math import sqrt
  
 def is_perfect_square(x):
@@ -43,38 +52,30 @@ def check_fib(num):
 
 
 # --------------
+#String Compression
 def compress(word):
     word=word.lower()
-    result = ""
-    count = 1
-    #Add in first character
-    result += word[0]
-    #Iterate through loop, skipping last one
-    for i in range(len(word)-1):
-        if(word[i] == word[i+1]):
-            count+=1
-        else:
-            result += str(count)
-            result += word[i+1]
-            count = 1
-    result += str(count)        
-    return result
+    mist=[]
+    l=0
+    while(l<len(word)):
+        m=word[l]
+        j=0
+        while(l<len(word) and word[l]==m):
+                 j=j+1
+                 l=l+1    
+
+        mist.append(m)
+        mist.append(str(j))
+    
+    return ''.join(mist)
 
 
 # --------------
 #Code starts here
+#K-Distinct
 def k_distinct(string,k):
-    string = string.lower()
-    unique = []
-    for char in string[::]:
-        if char not in unique:
-            unique.append(char)
-    count = len(unique)
-    
-    if count==k:
-        return True
-    else:
-        return False
+    s_list=(set(string.lower()))
+    return len(s_list)>=k
     
 
 
